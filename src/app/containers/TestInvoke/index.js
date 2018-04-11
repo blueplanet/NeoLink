@@ -22,6 +22,8 @@ export default class TestInvoke extends Component {
     scriptHash: '',
     arg1: '',
     arg2: '',
+    arg3: '',
+    arg4: '',
     operation: '',
   }
 
@@ -32,6 +34,8 @@ export default class TestInvoke extends Component {
       scriptHash: '',
       arg1: '',
       arg2: '',
+      arg3: '',
+      arg4: '',
       operation: '',
     })
   }
@@ -68,6 +72,14 @@ export default class TestInvoke extends Component {
 
     if (this.state.arg2) {
       txArgs.push(this.state.arg2)
+    }
+
+    if (this.state.arg3) {
+      txArgs.push(this.state.arg3)
+    }
+
+    if (this.state.arg4) {
+      txArgs.push(this.state.arg4)
     }
 
     const args = []
@@ -130,6 +142,20 @@ export default class TestInvoke extends Component {
             placeholder='Argument 2'
             value={ this.state.arg2 }
             id='arg2'
+            onChange={ this._handleTextFieldChange }
+          />
+          <TextField
+            type='text'
+            placeholder='Argument 3'
+            value={ this.state.arg3 }
+            id='arg3'
+            onChange={ this._handleTextFieldChange }
+          />
+          <TextField
+            type='text'
+            placeholder='Argument 4'
+            value={ this.state.arg4 }
+            id='arg4'
             onChange={ this._handleTextFieldChange }
           />
           <Button raised ripple>

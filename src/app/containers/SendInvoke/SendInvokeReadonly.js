@@ -40,6 +40,8 @@ export default class SendInvokeReadonly extends Component {
       operation: transaction.operation,
       arg1: transaction.args[0],
       arg2: transaction.args[1],
+      arg3: transaction.args[2],
+      arg4: transaction.args[3],
       amount: transaction.amount,
       assetType: transaction.type,
     }

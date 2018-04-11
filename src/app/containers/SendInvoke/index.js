@@ -125,6 +125,20 @@ class SendInvoke extends Component {
           />
           <TextField
             type='text'
+            placeholder='Argument 3'
+            value={ this.state.arg3 }
+            id='arg3'
+            onChange={ this._handleTextFieldChange }
+          />
+          <TextField
+            type='text'
+            placeholder='Argument 4'
+            value={ this.state.arg4 }
+            id='arg4'
+            onChange={ this._handleTextFieldChange }
+          />
+          <TextField
+            type='text'
             placeholder='Amount'
             value={ this.state.amount }
             id='amount'

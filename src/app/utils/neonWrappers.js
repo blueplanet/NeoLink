@@ -7,11 +7,11 @@ export function callInvoke (networkUrl, account, input) {
       reject(new Error('Invalid asset type specified'))
     }
 
-    const txArgs = [input.arg1, input.arg2]
+    const txArgs = [input.arg1, input.arg2, input.arg3, input.arg4]
     const args = []
     txArgs.forEach((arg) => {
       if (arg) {
-        args.push(arg)
+        args.push(Neon.u.reverseHex(arg))
       }
     })
 
@@ -23,7 +23,7 @@ export function callInvoke (networkUrl, account, input) {
       address: myAccount.address,
       intents: [{
         assetId: Neon.CONST.ASSET_ID[input.assetType],
-        value: toNumber(input.amount),
+        value: Neon.u.reverseHex(toNumber(input.amount)),
         scriptHash: input.scriptHash,
       }],
       script: { scriptHash: input.scriptHash, operation: input.operation, args: args },

@@ -18,10 +18,10 @@ window.addEventListener('message', (event) => {
 
   // TODO: this should first do a test to determine gas cost and THEN do send
   if (type === 'NEOLINK_SEND_INVOKE') {
-    const { scriptHash, operation, assetType, assetAmount, arg1, arg2 } = data.text
+    const { scriptHash, operation, assetType, assetAmount, arg1, arg2, arg3, arg4 } = data.text
 
     // Send an invoke to the extension background page.
-    sendInvoke(scriptHash, operation, arg1, arg2, assetType, assetAmount)
+    sendInvoke(scriptHash, operation, arg1, arg2, arg3, arg4, assetType, assetAmount)
   }
 })
 
@@ -48,9 +48,9 @@ function getExtensionStatus() {
 getExtensionStatus()
 
 // Send a message to background.js to run a smart contract send invoke
-function sendInvoke (scriptHash, operation, arg1, arg2, assetType, assetAmount) {
+function sendInvoke (scriptHash, operation, arg1, arg2, arg3, arg4, assetType, assetAmount) {
   console.log('invoking contract from content script')
-  let args = [arg1, arg2]
+  let args = [arg1, arg2, arg3, arg4]
 
   let tx = {
     'operation': operation,

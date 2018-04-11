@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { api } from '@cityofzion/neon-js'
-import { getAccountName, validateLength, getBalance, getTransactions } from '../../utils/helpers'
+import { getAccountName, validateLength, getTransactions } from '../../utils/helpers'
 import { toBigNumber } from '../../utils/math'
 
 import AccountInfo from '../../components/AccountInfo'
@@ -14,8 +14,6 @@ import style from './Home.css'
 class Home extends Component {
   constructor(props) {
     super(props)
-
-    this.props.currentNetwork = props.networks[props.selectedNetworkId]
 
     const { account, accounts } = this.props
 
@@ -61,8 +59,8 @@ class Home extends Component {
         this.setState({
           amounts: {
             neo: toBigNumber(result.assets.NEO.balance).toString(),
-            gas: toBigNumber(result.assets.GAS.balance).round(8).toString()
-          }
+            gas: toBigNumber(result.assets.GAS.balance).round(8).toString(),
+          },
         })
       })
       .catch(e => {
@@ -122,7 +120,7 @@ class Home extends Component {
   }
 
   render() {
-    const { account, networkUrl } = this.props
+    const { account, currentNetwork } = this.props
     const {
       amounts,
       showInputField,
@@ -157,7 +155,7 @@ class Home extends Component {
                 getBalance={ this.getHomeScreenBalance }
                 toggleDropDownMenu={ this.toggleDropDownMenu }
                 showDropDown={ showDropDown }
-                network={ networkUrl }
+                network={ currentNetwork }
                 updateBalance={ this._getAccountInfo }
               />
             )}
@@ -180,8 +178,7 @@ export default Home
 
 Home.propTypes = {
   walletActions: PropTypes.object.isRequired,
-  selectedNetworkId: PropTypes.string.isRequired,
-  networks: PropTypes.object.isRequired,
+  currentNetwork: PropTypes.object.isRequired,
   account: PropTypes.object.isRequired,
   accounts: PropTypes.object.isRequired,
 }

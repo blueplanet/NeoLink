@@ -80,22 +80,23 @@ export default class TestInvoke extends Component {
       params: [this.state.scriptHash, this.state.operation, args],
     })
 
-    api[networks[selectedNetworkId].apiType]
-      .getRPCEndpoint(networks[selectedNetworkId].url)
-      .then(endpoint => {
+    // api[networks[selectedNetworkId].apiType]
+    //   .getRPCEndpoint(networks[selectedNetworkId].url)
+    //   .then(endpoint => {
+        const endpoint = 'https://nse-node.ap.ngrok.io'
         query.execute(endpoint).then(response => {
           this.setState({
             loading: false,
             result: response.result,
           })
         })
-      })
-      .catch(e => {
-        this.setState({
-          loading: false,
-          errorMsg: 'Error testing invoke.',
-        })
-      })
+      // })
+      // .catch(e => {
+      //   this.setState({
+      //     loading: false,
+      //     errorMsg: 'Error testing invoke.',
+      //   })
+      // })
   }
 
   render() {
